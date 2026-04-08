@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="stylesheet.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <title>Profile Video</title>
+        <style>
+            /* Layout - Matches CV & Cover Letter exactly */
+            .video__section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 80vh;
+                padding-top: 8rem; /* Keeps top spacing consistent */
+                padding-bottom: 4rem;
+            }
+
+            /* Video Wrapper - Same width as your documents */
+            .video__wrapper {
+                max-width: 400px; 
+                width: 100%;
+                border: 5px solid #0b1e5f; 
+                border-radius: 0.5rem; 
+                box-shadow: 0px 10px 20px rgba(11, 30, 95, 0.2);
+                overflow: hidden;
+                background-color: #000;
+                display: flex; /* Helps center the video inside the frame */
+                align-items: center;
+            }
+
+            /* Fixes the video size inside the frame */
+            video {
+                display: block;
+                width: 100%;
+                height: auto;
+                max-height: 75vh; /* Prevents long videos from becoming too tall */
+                object-fit: contain; /* Ensures the whole video is visible */
+            }
+        </style>
+    </head>
+    <body>
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div><a href="index.html" class="nav__logo">E-Portfolio</a></div>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                        <li class="nav__item"><a href="cv.html" class="nav__link">CV</a></li>
+                        <li class="nav__item"><a href="cover-letter.html" class="nav__link">Cover Letter</a></li>
+                        <li class="nav__item"><a href="video.html" class="nav__link active-link">Profile Video</a></li>
+                        <li class="nav__item"><a href="projects.html" class="nav__link">Projects</a></li>
+                        <li class="nav__item"><a href="testimonials.html" class="nav__link">Testimonials</a></li>
+                        <li class="nav__item"><a href="achievements.html" class="nav__link">Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="nav__toggle" id="nav-toggle"><i class='bx bx-menu'></i></div>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <section class="video__section bd-grid">
+                
+                <div class="video__wrapper">
+                    <video controls preload="auto">
+                        <source src="vid.mp4" type="video/mp4">
+                        <source src="vid.MOV" type="video/quicktime">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__copy">&#169; Nada Foolad. All rights reserved</p>
+        </footer>
+
+        <script>
+            /* Nav Toggle */
+            const showMenu = (toggleId, navId) =>{
+                const toggle = document.getElementById(toggleId),
+                nav = document.getElementById(navId)
+                if(toggle && nav){
+                    toggle.addEventListener('click', ()=>{
+                        nav.classList.toggle('show')
+                    })
+                }
+            }
+            showMenu('nav-toggle','nav-menu')
+        </script>
+    </body>
+</html>

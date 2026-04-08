@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="stylesheet.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <title>Testimonials</title>
+        <style>
+            /* Centers the content in the middle of the page */
+            .test__section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 80vh; /* Keeps it centered vertically */
+                padding-top: 8rem;
+                padding-bottom: 4rem;
+            }
+
+            .test__wrapper {
+                position: relative;
+                display: inline-block;
+                max-width: 500px;
+                cursor: pointer;
+                margin: 2rem 0;
+            }
+
+            .test__img {
+                width: 100%;
+                height: auto;
+                border: 5px solid #0b1e5f;
+                border-radius: 0.5rem;
+                box-shadow: 0px 10px 20px rgba(11, 30, 95, 0.2);
+                display: block;
+            }
+
+            .zoom__icon {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                font-size: 1.5rem;
+                color: #0b1e5f;
+                background: rgba(255, 255, 255, 0.8);
+                padding: 8px;
+                border-radius: 50%;
+                opacity: 0;
+                transition: .3s;
+                pointer-events: none;
+            }
+
+            .test__wrapper:hover .zoom__icon {
+                opacity: 1;
+            }
+
+            /* Full horizontal line */
+            .full-hr {
+                border: 0;
+                height: 1px;
+                background: #eee;
+                width: 100vw; /* Spans full viewport width */
+                margin-left: calc(-50vw + 50%); /* Centers the wide line */
+            }
+
+            /* Lightbox Modal */
+            .modal {
+                display: none; 
+                position: fixed; 
+                z-index: 1000; 
+                padding-top: 50px; 
+                left: 0; top: 0;
+                width: 100%; height: 100%; 
+                background-color: rgba(0,0,0,0.9); 
+            }
+
+            .modal-content {
+                margin: auto;
+                display: block;
+                width: 90%;
+                max-width: 800px;
+                border: 5px solid #fff;
+                border-radius: 0.5rem;
+            }
+
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div><a href="index.html" class="nav__logo">E-Portfolio</a></div>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                        <li class="nav__item"><a href="cv.html" class="nav__link">CV</a></li>
+                        <li class="nav__item"><a href="cover-letter.html" class="nav__link">Cover Letter</a></li>
+                        <li class="nav__item"><a href="video.html" class="nav__link">Profile Video</a></li>
+                        <li class="nav__item"><a href="projects.html" class="nav__link">Projects</a></li>
+                        <li class="nav__item"><a href="testimonials.html" class="nav__link active-link">Testimonials</a></li>
+                        <li class="nav__item"><a href="achievements.html" class="nav__link">Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="nav__toggle" id="nav-toggle"><i class='bx bx-menu'></i></div>
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <section class="test__section bd-grid">
+                <div class="test__wrapper" onclick="openLightbox('test1.jpg')">
+                    <img src="test1.jpg" alt="Testimonial 1" class="test__img">
+                    <i class='bx bx-search-alt zoom__icon'></i>
+                </div>
+
+                <hr class="full-hr">
+
+                <div class="test__wrapper" onclick="openLightbox('test2.jpg')">
+                    <img src="test2.jpg" alt="Testimonial 2" class="test__img">
+                    <i class='bx bx-search-alt zoom__icon'></i>
+                </div>
+            </section>
+
+            <div id="myModal" class="modal">
+                <span class="close" onclick="closeLightbox()">&times;</span>
+                <img class="modal-content" id="modalImg">
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p class="footer__copy">&#169; Nada Foolad. All rights reserved</p>
+        </footer>
+
+        <script>
+            /* Menu Toggle */
+            const showMenu = (toggleId, navId) =>{
+                const toggle = document.getElementById(toggleId),
+                nav = document.getElementById(navId)
+                if(toggle && nav){
+                    toggle.addEventListener('click', ()=>{
+                        nav.classList.toggle('show')
+                    })
+                }
+            }
+            showMenu('nav-toggle','nav-menu')
+
+            /* Modal Logic */
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("modalImg");
+
+            function openLightbox(src) {
+                modal.style.display = "block";
+                modalImg.src = src;
+            }
+
+            function closeLightbox() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    closeLightbox();
+                }
+            }
+        </script>
+    </body>
+</html>
